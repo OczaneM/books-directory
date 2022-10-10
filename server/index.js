@@ -2,6 +2,7 @@ const express = require("express");
 
 app = express();
 app.use(express.json());
+const port = process.env.DB_PORT;
 
 const db = require("./models");
 
@@ -14,7 +15,5 @@ const booksRouter = require("./routes/Books");
 app.use("/books", booksRouter);
 
 db.sequelize.sync().then(() => {
-  app.listen(3000, () => {
-    console.log("Server running on port 3000");
-  });
+  app.listen(port);
 });
